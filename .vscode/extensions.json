@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "jawandarajbir.react-vscode-extension-pack",
+    "burkeholland.simple-react-snippets",
+    "bradlc.vscode-tailwindcss",
+    "mgmcdermott.vscode-language-babel",
+    "gamunu.vscode-yarn",
+    "formulahendry.auto-complete-tag",
+    "ecmel.vscode-html-css",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "antfu.vite"
+  ]
+}
