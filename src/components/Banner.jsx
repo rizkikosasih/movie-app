@@ -1,16 +1,9 @@
 import React from 'react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import generateParams from '../hooks/generateParams'
+import generateUrl from '../hooks/generateUrl'
 
 const Banner = () => {
-  console.info(generateParams({
-    q: 'dogs',
-    act: 'find',
-    type: ['good', 'beautiful', 'husky'],
-    v: 2
-  }))
-
   return (
     <>
       <Swiper
