@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { generateUrl } from '../constants'
 import noImage from './../assets/svg/noImage.svg'
 import {
@@ -15,6 +15,8 @@ const Modal = ({ modalId, setShowModal, handleClickDetail }) => {
   const [movie, setMovie] = useState(null)
   const [open, setOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [dialogHeight, setDialogHeight] = useState(window.innerHeight < 480 ? window.innerHeight - 180 + 'px' : '24rem')
+  const [movieWidth, setMovieWidth] = useState(window.innerWidth < 576 ? '100%' : '50%')
 
   const getMovie = async () => {
     const url = generateUrl({ i: modalId, plot: 'full' })
@@ -33,9 +35,22 @@ const Modal = ({ modalId, setShowModal, handleClickDetail }) => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getMovie()
   }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDialogHeight(window.innerHeight < 480 ? window.innerHeight - 180 + 'px' : '24rem')
+      setMovieWidth(window.innerWidth < 576 ? '100%' : '50%')
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [dialogHeight, movieWidth])
 
   return (
     <>
@@ -47,9 +62,9 @@ const Modal = ({ modalId, setShowModal, handleClickDetail }) => {
           handler={handleClickDetail}
         >
           <DialogHeader>Movie Detail</DialogHeader>
-          <DialogBody className='dialog-body'>
+          <DialogBody className='dialog-body' style={{ height: dialogHeight }}>
             <div className='movie-detail'>
-              <div className='w-1/2 flex justify-center'>
+              <div className='col mb-4' style={{ width: movieWidth }}>
                 <img
                   src={movie.Poster !== 'N/A' ? movie.Poster : noImage}
                   className="poster-image"
@@ -57,7 +72,7 @@ const Modal = ({ modalId, setShowModal, handleClickDetail }) => {
                 />
               </div>
 
-              <div className='w-1/2 flex flex-col justify-center'>
+              <div className='col flex-col flex-wrap' style={{ width: movieWidth }}>
                 <Typography variant="h4" color="blue-gray" className="mb-4">
                   {movie.Title}
                 </Typography>
@@ -119,7 +134,7 @@ const Modal = ({ modalId, setShowModal, handleClickDetail }) => {
 
               </div>
 
-              <div className='w-10/12 mt-4 mx-auto'>
+              <div className='w-full mt-4 mx-auto'>
                 <div>
                   <Typography className='font-semibold text-black-500'>
                     Plot :

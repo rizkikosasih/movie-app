@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getPageList } from '../constants'
 import { IoArrowBackCircle, IoArrowForwardCircle } from 'react-icons/io5'
 import { Button, IconButton } from '@material-tailwind/react'
 
 const Pagination = ({ isLoading, page, setPage, totalPages }) => {
-  const pageList = getPageList(totalPages, page, 7)
+  const [maxLength, setMaxLength] = useState(window.innerWidth < 480 ? 5 : 7)
+  const pageList = getPageList(totalPages, page, maxLength)
+
+  useEffect(() => {
+    const handleResize = () => setMaxLength(window.innerWidth < 480 ? 5 : 7)
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [maxLength])
 
   const getItemProps = (index) => (
     {
@@ -33,7 +43,7 @@ const Pagination = ({ isLoading, page, setPage, totalPages }) => {
 
   return (
     <div className='justify-center mt-8' style={{ display: isLoading ? 'none' : 'flex' }}>
-      <div className='flex items-center gap-4'>
+      <div className='movie-pagination'>
         <Button
           variant='text'
           color='blue'
