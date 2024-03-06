@@ -9,6 +9,7 @@
     "ecmel.vscode-html-css",
     "mikestead.dotenv",
     "editorconfig.editorconfig",
-    "antfu.vite"
+    "antfu.vite",
+    "dsznajder.es7-react-js-snippets"
   ]
 }

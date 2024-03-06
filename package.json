@@ -11,7 +11,6 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "params-url": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
@@ -20,6 +19,7 @@
     "swiper": "^11.0.7"
   },
   "devDependencies": {
+    "@material-tailwind/react": "^2.1.9",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
