@@ -1,13 +1,12 @@
 import React, { useState, useLayoutEffect } from 'react'
 import { Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import { generateUrl } from '../constants'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 const Banner = () => {
-  const [swiper, setSwiper] = useState(null)
   const [movies, setMovies] = useState([])
 
   const getBannerList = async () => {
