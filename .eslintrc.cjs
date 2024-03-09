@@ -3,9 +3,12 @@ module.exports = {
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
+    'react/jsx-uses-react',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended'
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'src'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
@@ -14,4 +17,4 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
   }
-}
+};

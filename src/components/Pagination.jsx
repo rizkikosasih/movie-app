@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { getPageList } from '../constants'
-import { IoArrowBackCircle, IoArrowForwardCircle } from 'react-icons/io5'
-import { Button, IconButton } from '@material-tailwind/react'
+import React, { useEffect, useState } from 'react';
+import { getPageList } from '../constants';
+import { IoArrowBackCircle, IoArrowForwardCircle } from 'react-icons/io5';
+import { Button, IconButton } from '@material-tailwind/react';
 
 const Pagination = ({ isLoading, page, setPage, totalPages }) => {
-  const [maxLength, setMaxLength] = useState(window.innerWidth < 480 ? 5 : 7)
-  const pageList = getPageList(totalPages, page, maxLength)
+  const [maxLength, setMaxLength] = useState(window.innerWidth < 480 ? 5 : 7);
+  const pageList = getPageList(totalPages, page, maxLength);
 
   useEffect(() => {
-    const handleResize = () => setMaxLength(window.innerWidth < 480 ? 5 : 7)
+    const handleResize = () => setMaxLength(window.innerWidth < 480 ? 5 : 7);
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [maxLength])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [maxLength]);
 
-  const getItemProps = (index) => (
-    {
-      variant: page === index ? 'filled' : 'text',
-      color: 'blue',
-      onClick: () => {
-        if (page !== index) {
-          setPage(index)
-        }
-      },
-      className: 'rounded-full',
-    }
-  )
+  const getItemProps = index => ({
+    variant: page === index ? 'filled' : 'text',
+    color: 'blue',
+    onClick: () => {
+      if (page !== index) {
+        setPage(index);
+      }
+    },
+    className: 'rounded-full'
+  });
 
   const next = () => {
-    if (page === totalPages) return
+    if (page === totalPages) return;
 
-    setPage(page + 1)
+    setPage(page + 1);
   };
 
   const prev = () => {
-    if (page === 1) return
+    if (page === 1) return;
 
-    setPage(page - 1)
+    setPage(page - 1);
   };
 
   return (
@@ -57,8 +55,10 @@ const Pagination = ({ isLoading, page, setPage, totalPages }) => {
         <div className='flex items-center gap-2'>
           {pageList?.map((item, index) => {
             return (
-              <IconButton key={index} {...getItemProps(item)} disabled={!item} >{item || '...'}</IconButton>
-            )
+              <IconButton key={index} {...getItemProps(item)} disabled={!item}>
+                {item || '...'}
+              </IconButton>
+            );
           })}
         </div>
 
@@ -73,7 +73,7 @@ const Pagination = ({ isLoading, page, setPage, totalPages }) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

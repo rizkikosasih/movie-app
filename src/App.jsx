@@ -1,6 +1,6 @@
-import { Route, HashRouter as Router, Routes } from 'react-router-dom'
-import PageNotFound from './pages/PageNotFound'
-import Home from './pages/Home'
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+import PageNotFound from './pages/PageNotFound';
+import Home from './pages/Home';
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
         </Routes>
       </Router>
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
