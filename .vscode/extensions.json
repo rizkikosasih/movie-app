@@ -10,6 +10,7 @@
     "mikestead.dotenv",
     "editorconfig.editorconfig",
     "antfu.vite",
-    "dsznajder.es7-react-js-snippets"
+    "dsznajder.es7-react-js-snippets",
+    "esbenp.prettier-vscode"
   ]
 }
