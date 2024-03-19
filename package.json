@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "watch": "vite build --watch",
-    "format": "prettier . --write --config .prettierrc.json"
+    "format": "prettier . --write --config .prettierrc.json --ignore-path .prettierignore"
   },
   "dependencies": {
     "react": "^18.2.0",
