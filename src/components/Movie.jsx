@@ -1,46 +1,23 @@
-import React from 'react';
-import noImage from './../assets/svg/noImage.svg';
-import { Card, CardHeader, CardBody, Typography } from '@material-tailwind/react';
+import Skeleton from './CardSkeleton';
+import MovieItem from './MovieItem';
 
-const Movie = ({ movies, handleClickDetail }) => {
+const Movie = ({ isLoading, movies, handleClickDetail }) => {
   return (
     <>
-      <div className="head-text mb-3">Movie</div>
-      {movies.length ? (
-        <div className="movie-wrapper">
-          {movies.map((item) => {
-            return (
-              <div className="col" key={item.imdbID}>
-                <Card className="w-full overflow-hidden">
-                  <CardHeader
-                    floated={false}
-                    shadow={false}
-                    color="transparent"
-                    className="m-0 rounded-none">
-                    <img
-                      loading="lazy"
-                      className="movie-image cursor-pointer"
-                      alt={item.Title}
-                      src={item.Poster !== 'N/A' ? item.Poster : noImage}
-                      data-id={item.imdbID}
-                      onClick={handleClickDetail}
-                    />
-                  </CardHeader>
-                  <CardBody>
-                    <Typography
-                      variant="h5"
-                      color="blue-gray"
-                      className="cursor-pointer"
-                      data-id={item.imdbID}
-                      onClick={handleClickDetail}>
-                      {item.Title}
-                    </Typography>
-                  </CardBody>
-                </Card>
-              </div>
-            );
-          })}
-        </div>
+      {isLoading ? (
+        <Skeleton length={10} />
+      ) : movies.length ? (
+        movies.map((movie) => {
+          return (
+            <MovieItem
+              key={movie.imdbID}
+              imdbID={movie.imdbID}
+              Title={movie.Title}
+              Poster={movie.Poster}
+              handleClickDetail={handleClickDetail}
+            />
+          );
+        })
       ) : (
         <div className="font-semibold text-red-400 text-2xl">Not Found</div>
       )}

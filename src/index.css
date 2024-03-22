@@ -62,11 +62,11 @@ body:has(.card[data-color='green']:hover) {
   }
 
   .max-container-home {
-    @apply max-w-5xl mx-auto sm:p-10 pb-12 !pt-[30px] px-8 min-h-[calc(100vh-20rem-12px)];
+    @apply relative max-w-5xl mx-auto sm:p-10 pb-12 !pt-[30px] px-8 min-h-[calc(100vh-20rem-12px)];
   }
 
   .max-container {
-    @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[30px] px-8 min-h-[calc(100vh-80px)];
+    @apply relative max-w-5xl mx-auto sm:p-16 pb-12 !pt-[30px] px-8 min-h-[calc(100vh-80px)];
   }
 
   .head-text {
@@ -77,7 +77,7 @@ body:has(.card[data-color='green']:hover) {
     @apply font-semibold sm:text-3xl text-xl relative font-poppins;
   }
 
-  .blue-gradient_text {
+  .blue-gradient-text {
     @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
   }
 
@@ -85,7 +85,7 @@ body:has(.card[data-color='green']:hover) {
     @apply w-full flex flex-wrap justify-center gap-4;
   }
 
-  .movie-wrapper > .col {
+  .movie-wrapper>.col {
     @apply flex flow-col-row justify-start w-[calc(50%-1rem)] md:w-[30%];
   }
 
@@ -105,7 +105,7 @@ body:has(.card[data-color='green']:hover) {
     @apply flex flex-row flex-wrap items-start;
   }
 
-  .movie-detail > .col {
+  .movie-detail>.col {
     @apply flex justify-center grow-0 shrink-0 basis-auto md:px-2;
   }
 
@@ -117,11 +117,11 @@ body:has(.card[data-color='green']:hover) {
     @apply w-full border-none mb-2;
   }
 
-  .movie-detail table tbody > tr > td {
+  .movie-detail table tbody>tr>td {
     @apply align-baseline text-black-500 leading-8;
   }
 
-  .movie-detail table tbody > tr > td:first-child {
+  .movie-detail table tbody>tr>td:first-child {
     @apply font-semibold;
   }
 

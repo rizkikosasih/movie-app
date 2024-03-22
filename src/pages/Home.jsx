@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
 import Modal from '../components/Modal';
 import Movie from '../components/Movie';
 import { generateUrl } from '../constants';
 import SearchBox from '../components/SearchBox';
-import Loader from '../components/Loader';
 import Pagination from '../components/Pagination';
 
 const Home = () => {
@@ -19,14 +18,14 @@ const Home = () => {
   const getMovieList = async (search = 'spider', page = 1) => {
     const url = generateUrl({ s: search, page: page });
     setIsLoading(true);
-    const response = await fetch(url);
-    const json = await response.json();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const response = await fetch(url).then((res) => res.json());
     setIsLoading(false);
 
-    if (json.Search) {
-      setMovies(json.Search);
+    if (response.Search) {
+      setMovies(response.Search);
       setPage(page);
-      setTotalPages(Math.ceil(json.totalResults / 10));
+      setTotalPages(Math.ceil(response.totalResults / 10));
     } else {
       setPage(page);
       setTotalPages(1);
@@ -59,11 +58,14 @@ const Home = () => {
       <div className="max-container-home">
         <SearchBox setSearch={setSearch} search={search} setPage={setPage} />
 
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <Movie movies={movies} handleClickDetail={handleClickDetail} />
-        )}
+        <div className="head-text mb-3">Movie</div>
+        <div className="movie-wrapper">
+          <Movie
+            movies={movies}
+            isLoading={isLoading}
+            handleClickDetail={handleClickDetail}
+          />
+        </div>
 
         <Pagination
           isLoading={isLoading}
