@@ -1,7 +1,9 @@
 # Movie App
+
 Aplikasi katalog film berbasis web yang menyajikan daftar film dengan banner carousel, pencarian real-time, pagination, dan detail singkat via modal. UI responsif dengan skeleton loading untuk pengalaman yang halus, serta routing termasuk halaman 404. Dibangun cepat dengan Vite dan di-deploy ke GitHub Pages.
 
 ## Fitur utama
+
 - Banner carousel (Swiper)
 - Pencarian film dan pagination
 - Modal detail film
@@ -10,9 +12,11 @@ Aplikasi katalog film berbasis web yang menyajikan daftar film dengan banner car
 - UI responsif
 
 ## Tech stack
+
+- NodeJS ^20.19.0
 - Frontend: React 18, Vite
 - Routing: React Router DOM
-- UI & Styling: Tailwind CSS, @material-tailwind/react, React Icons
+- UI & Styling: Tailwind CSS, Daisy UI, React Icons
 - Carousel: Swiper
 - Loading: react-spinners
 - Kualitas kode: ESLint, Prettier
