@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { ghPages } from 'vite-plugin-gh-pages';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: '/movie-app/',
-  plugins: [react(), ghPages()],
+  plugins: [tailwindcss(), react()],
   server: {
     host: true
   }

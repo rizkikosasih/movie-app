@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
-import Modal from '../components/Modal';
-import Movie from '../components/Movie';
+import Movie from '../components/movie/Movie.jsx';
 import { generateUrl } from '../constants';
 import SearchBox from '../components/SearchBox';
 import Pagination from '../components/Pagination';
+import MovieDetail from '../components/movie/MovieDetail.jsx';
+import Loader from '../components/loading/Loader.jsx';
+import DynamicModal from '../components/global/DynamicModal.jsx';
 
 const Home = () => {
-  const [showModal, setShowModal] = useState(null);
-  const [modalId, setModalId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [detail, setDetail] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('spider');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
 
   const getMovieList = async (search = 'spider', page = 1) => {
     const url = generateUrl({ s: search, page: page });
-    setIsLoading(true);
+    setisLoading(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const response = await fetch(url).then((res) => res.json());
-    setIsLoading(false);
+    setisLoading(false);
 
     if (response.Search) {
       setMovies(response.Search);
@@ -33,18 +36,25 @@ const Home = () => {
     }
   };
 
-  const handleClickDetail = (evt) => {
-    if (showModal) {
-      setModalId(null);
-    } else {
-      const {
-        target: {
-          dataset: { id }
-        }
-      } = evt;
-      setModalId(id);
+  const handleClickDetail = async (id) => {
+    setLoading(true);
+    try {
+      const url = generateUrl({ i: id, plot: 'full' });
+      const response = await fetch(url);
+      const data = await response.json();
+
+      setDetail(data);
+      setIsModalOpen(true);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    } finally {
+      setLoading(false);
     }
-    setShowModal(!showModal);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setDetail(null), 200);
   };
 
   useEffect(() => {
@@ -75,14 +85,15 @@ const Home = () => {
         />
       </div>
 
-      {showModal && (
-        <Modal
-          className="flex items-center justify-center"
-          modalId={modalId}
-          handleClickDetail={handleClickDetail}
-          setShowModal={setShowModal}
-        />
-      )}
+      {loading && <Loader />}
+
+      <DynamicModal
+        id="movie-modal"
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title={detail?.Title}>
+        {detail && <MovieDetail movie={detail} />}
+      </DynamicModal>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { RiseLoader } from 'react-spinners';
 
-const Loader = () => {
+const Loader = ({size = 25}) => {
   const style = {
     position: 'fixed',
     top: '50%',
@@ -10,7 +10,7 @@ const Loader = () => {
   return (
     <div className="w-full relative z-[100]">
       <div style={style}>
-        <RiseLoader color="#36d7b7" size={25} />
+        <RiseLoader color="#36d7b7" size={size} />
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
-import Skeleton from './CardSkeleton';
-import MovieItem from './MovieItem';
+import CardSkeleton from '../loading/CardSkeleton.jsx';
+import MovieItem from './MovieItem.jsx';
 
 const Movie = ({ isLoading, movies, handleClickDetail }) => {
   return (
     <>
       {isLoading ? (
-        <Skeleton length={10} />
+        <CardSkeleton length={10} />
       ) : movies.length ? (
         movies.map((movie) => {
           return (
