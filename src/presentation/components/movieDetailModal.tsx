@@ -62,7 +62,7 @@ export const MovieDetailModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-zinc-950 text-zinc-100 border-zinc-800 p-6 scrollbar-none">
+      <DialogContent className="max-w-5xl sm:max-w-5xl max-h-[90vh] overflow-y-auto bg-zinc-950 text-zinc-100 border-zinc-800 p-6 scrollbar-none">
         {isDetailsLoading ? (
           <div className="flex h-[400px] w-full items-center justify-center">
             <Spinner size="lg" />
