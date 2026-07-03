@@ -165,21 +165,21 @@ export const MovieDetail = () => {
                 <h2 className="text-xl font-bold text-amber-500 dark:text-amber-400 font-serif">
                   Sinopsis
                 </h2>
-                <p className="text-zinc-300 text-base leading-relaxed">
+                <p className="text-zinc-750 dark:text-zinc-300 text-base leading-relaxed">
                   {movie.overview || 'Sinopsis tidak tersedia untuk film ini.'}
                 </p>
               </div>
 
               {/* Right Side: Statistics Card */}
-              <div className="rounded-2xl bg-zinc-900/40 dark:bg-zinc-900/20 border border-zinc-200/10 dark:border-zinc-800/50 p-6 space-y-4 text-sm shadow-xl">
-                <h3 className="text-lg font-bold text-zinc-200 border-b border-zinc-800 pb-2">
+              <div className="rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/20 border border-zinc-200 dark:border-zinc-800/50 p-6 space-y-4 text-sm shadow-xl">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-200 border-b border-zinc-250 dark:border-zinc-800 pb-2">
                   Detail Informasi
                 </h3>
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400 flex items-center gap-2">
+                  <span className="text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-zinc-500" /> Tanggal Rilis
                   </span>
-                  <span className="font-semibold text-zinc-200">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     {movie.releaseDate
                       ? new Date(movie.releaseDate).toLocaleDateString('id-ID', {
                           year: 'numeric',
@@ -190,32 +190,32 @@ export const MovieDetail = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400 flex items-center gap-2">
+                  <span className="text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
                     <Clock className="h-4 w-4 text-zinc-500" /> Durasi Film
                   </span>
-                  <span className="font-semibold text-zinc-200">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     {movie.runtime ? `${movie.runtime} menit` : 'N/A'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400 flex items-center gap-2">
+                  <span className="text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
                     <DollarSign className="h-4 w-4 text-zinc-500" /> Anggaran (Budget)
                   </span>
-                  <span className="font-semibold text-zinc-200">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     {formatCurrency(movie.budget)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400 flex items-center gap-2">
+                  <span className="text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
                     <DollarSign className="h-4 w-4 text-zinc-500" /> Pendapatan (Revenue)
                   </span>
-                  <span className="font-semibold text-zinc-200">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     {formatCurrency(movie.revenue)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400">Status Rilis</span>
-                  <span className="font-semibold capitalize text-zinc-200">
+                  <span className="text-zinc-500 dark:text-zinc-400">Status Rilis</span>
+                  <span className="font-semibold capitalize text-zinc-800 dark:text-zinc-200">
                     {movie.status || 'N/A'}
                   </span>
                 </div>
