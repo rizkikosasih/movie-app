@@ -1,11 +1,16 @@
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '@/presentation/pages/Home';
+import Explore from '@/presentation/pages/Explore';
+
 const App = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-amber-500">
-      <div className="text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight">Movie App</h1>
-        <p className="mt-2 text-zinc-400">Clean Architecture Upgrade in Progress</p>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore/:category" element={<Explore />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </Router>
   );
 };
 
