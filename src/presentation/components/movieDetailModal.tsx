@@ -70,7 +70,7 @@ export const MovieDetailModal = ({
         ) : movie ? (
           <div className="space-y-6">
             {/* Modal Header & Hero */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-zinc-800 shadow-2xl">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-800 shadow-2xl">
               {movie.backdropUrl ? (
                 <img
                   src={movie.backdropUrl}
@@ -83,7 +83,7 @@ export const MovieDetailModal = ({
                 </div>
               )}
               {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
               {/* Title & Badge */}
               <div className="absolute bottom-4 left-6 right-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -208,7 +208,7 @@ export const MovieDetailModal = ({
                       whileHover={{ scale: 1.02 }}
                       className="w-[110px] shrink-0 cursor-pointer space-y-1.5 group"
                     >
-                      <div className="aspect-[2/3] rounded-lg overflow-hidden bg-zinc-800 relative">
+                      <div className="aspect-2/3 rounded-lg overflow-hidden bg-zinc-800 relative">
                         {sm.posterUrl ? (
                           <img
                             src={sm.posterUrl}

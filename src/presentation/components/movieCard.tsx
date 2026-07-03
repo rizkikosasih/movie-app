@@ -30,7 +30,7 @@ export const MovieCard = ({ movie, onSelect }: MovieCardProps) => {
       className="group relative cursor-pointer overflow-hidden rounded-xl bg-zinc-900/50 dark:bg-zinc-900/30 border border-zinc-200/20 dark:border-zinc-800/50 shadow-md hover:shadow-2xl transition-all duration-300 w-[150px] sm:w-[180px] md:w-[200px] shrink-0"
     >
       {/* Poster Image */}
-      <div className="relative aspect-[2/3] w-full overflow-hidden bg-zinc-800">
+      <div className="relative aspect-2/3 w-full overflow-hidden bg-zinc-800">
         {movie.posterUrl ? (
           <img
             src={movie.posterUrl}
@@ -45,7 +45,7 @@ export const MovieCard = ({ movie, onSelect }: MovieCardProps) => {
         )}
 
         {/* Hover Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3" />
 
         {/* Watchlist Toggle Button (Top Right) */}
         <Button

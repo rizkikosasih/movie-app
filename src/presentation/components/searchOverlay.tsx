@@ -137,10 +137,10 @@ export const SearchOverlay = ({ onSelectMovie }: SearchOverlayProps) => {
                   <img
                     src={hoveredMovie.posterUrl}
                     alt={hoveredMovie.title}
-                    className="w-full max-w-[220px] aspect-[2/3] object-cover rounded-xl shadow-2xl border border-zinc-800"
+                    className="w-full max-w-[220px] aspect-2/3 object-cover rounded-xl shadow-2xl border border-zinc-800"
                   />
                 ) : (
-                  <div className="w-[220px] aspect-[2/3] flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-500">
+                  <div className="w-[220px] aspect-2/3 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-500">
                     No Poster Image
                   </div>
                 )}

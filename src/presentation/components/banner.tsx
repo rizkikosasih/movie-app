@@ -56,8 +56,8 @@ export const Banner = ({ onSelectMovie }: BannerProps) => {
                 />
               )}
               {/* Dark Overlay Gradients */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-r from-zinc-950/80 via-transparent to-transparent" />
             </div>
 
             {/* Content Info overlay */}
