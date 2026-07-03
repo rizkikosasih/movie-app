@@ -1,9 +1,9 @@
 export const Footer = () => {
   return (
     <footer className="w-full border-t border-zinc-200/40 bg-zinc-50 dark:border-zinc-800/40 dark:bg-[#050505] py-8 transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="mx-auto max-w-7xl px-6 flex flex-col items-center text-center md:flex-row md:text-left md:justify-between gap-6">
         {/* Attribution TMDB */}
-        <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+        <div className="flex flex-col items-center md:flex-row gap-4">
           <img
             src="/tmdb-logo.svg"
             alt="The Movie Database Logo"
