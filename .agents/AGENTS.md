@@ -84,4 +84,4 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 2. Agent tidak boleh melompati step tanpa hasil step sebelumnya disetujui.
 3. Perubahan kontrak interface (`MovieRepository`, `MovieRemoteSource`) memerlukan koordinasi antara Data Layer Agent dan Domain Layer Agent sebelum implementasi berjalan.
 4. QA/Verification Agent dijalankan setelah setiap step pada `INSTRUCTION.md` selesai, bukan hanya di akhir project.
-5. Sebelum melakukan git commit, Agen wajib menjalankan formatter Prettier pada berkas yang diubah untuk menjamin konsistensi format kode.
+5. Sebelum melakukan git commit atau push, Agen WAJIB menjalankan formatter yang terpasang dengan menjalankan perintah `npm run format` pada direktori kerja.
