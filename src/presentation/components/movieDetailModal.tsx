@@ -62,7 +62,7 @@ export const MovieDetailModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-5xl sm:max-w-5xl max-h-[90vh] overflow-y-auto bg-zinc-950 text-zinc-100 border-zinc-800 p-6 scrollbar-none">
+      <DialogContent className="max-w-5xl sm:max-w-5xl max-h-[90vh] overflow-y-auto bg-zinc-950 text-zinc-100 border-zinc-800 p-6">
         {isDetailsLoading ? (
           <div className="flex h-[400px] w-full items-center justify-center">
             <Spinner size="lg" />
@@ -70,7 +70,7 @@ export const MovieDetailModal = ({
         ) : movie ? (
           <div className="space-y-6">
             {/* Modal Header & Hero */}
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-800 shadow-2xl">
+            <div className="relative h-[200px] sm:h-[300px] md:h-[380px] w-full overflow-hidden rounded-xl bg-zinc-800 shadow-2xl">
               {movie.backdropUrl ? (
                 <img
                   src={movie.backdropUrl}
