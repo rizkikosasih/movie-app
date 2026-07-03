@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft } from 'lucide-react';
@@ -6,7 +6,10 @@ import { motion } from 'framer-motion';
 import Layout from '../components/layout';
 import MovieCard from '../components/movieCard';
 import { useInfiniteCategoryMovies } from '../hooks/useInfiniteCategoryMovies';
+import { useDiscoverMovies } from '../hooks/useDiscoverMovies';
+import { FilterPanel } from '../components/filterPanel';
 import { Spinner } from '../components/ui/spinner';
+import type { DiscoverMoviesParams } from '@/data/schemas/movieSchema';
 
 const categoryTitleMap: Record<string, string> = {
   trending: 'Sedang Trending',
@@ -20,14 +23,30 @@ export const Explore = () => {
   const { category = 'trending' } = useParams<{ category: string }>();
   const navigate = useNavigate();
 
+  // Local state to store filter parameters
+  const [activeParams, setActiveParams] = useState<DiscoverMoviesParams>({});
+
+  // Reset filters when the URL category changes
+  useEffect(() => {
+    setActiveParams({});
+  }, [category]);
+
+  const isDiscoverMode = Object.values(activeParams).some((val) => val !== undefined);
+
   // Setup intersection observer
   const { ref, inView } = useInView({
     threshold: 0.1,
     rootMargin: '200px'
   });
 
+  // Call both hooks conditionally using the enabled parameter
+  const categoryQuery = useInfiniteCategoryMovies(category, !isDiscoverMode);
+  const discoverQuery = useDiscoverMovies(activeParams, isDiscoverMode);
+
+  // Choose the active query based on state
+  const activeQuery = isDiscoverMode ? discoverQuery : categoryQuery;
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, isError } =
-    useInfiniteCategoryMovies(category);
+    activeQuery;
 
   // Trigger loading next page when scrolling to bottom
   useEffect(() => {
@@ -38,6 +57,10 @@ export const Explore = () => {
 
   const handleSelectMovie = (movieId: number) => {
     navigate(`/movie/${movieId}`);
+  };
+
+  const handleResetFilters = () => {
+    setActiveParams({});
   };
 
   // Extract all movies from paginated data
@@ -82,6 +105,13 @@ export const Explore = () => {
           </div>
         </div>
 
+        {/* Filter Panel Section */}
+        <FilterPanel
+          activeParams={activeParams}
+          onFilterChange={setActiveParams}
+          onReset={handleResetFilters}
+        />
+
         {/* Gallery Grid */}
         {isLoading ? (
           <div className="flex h-[40vh] w-full items-center justify-center">
@@ -120,8 +150,16 @@ export const Explore = () => {
             </div>
           </div>
         ) : (
-          <div className="text-center py-12 text-zinc-500">
-            Tidak ada film ditemukan dalam kategori ini.
+          <div className="text-center py-12 text-zinc-500 space-y-4">
+            <p>Tidak ada film ditemukan dengan filter aktif saat ini.</p>
+            {isDiscoverMode && (
+              <button
+                onClick={handleResetFilters}
+                className="px-4 py-2 text-sm font-semibold rounded-xl bg-amber-500 text-black hover:bg-amber-400 transition-colors"
+              >
+                Reset Filter
+              </button>
+            )}
           </div>
         )}
       </div>

@@ -41,3 +41,18 @@ export const TMDBMovieDetailResponseSchema = z.object({
 export type TMDBMovieDto = z.infer<typeof TMDBMovieSchema>;
 export type TMDBMovieListResponseDto = z.infer<typeof TMDBMovieListResponseSchema>;
 export type TMDBMovieDetailResponseDto = z.infer<typeof TMDBMovieDetailResponseSchema>;
+
+export const TMDBGenreListResponseSchema = z.object({
+  genres: z.array(TMDBGenreSchema)
+});
+
+export type TMDBGenreListResponseDto = z.infer<typeof TMDBGenreListResponseSchema>;
+
+export interface DiscoverMoviesParams {
+  with_genres?: string;
+  sort_by?: string;
+  release_date_gte?: string;
+  release_date_lte?: string;
+  vote_average_gte?: number;
+  vote_average_lte?: number;
+}

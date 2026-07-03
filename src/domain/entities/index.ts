@@ -30,3 +30,5 @@ export interface PaginatedMovies {
   totalPages: number;
   totalResults: number;
 }
+
+export * from './genre';

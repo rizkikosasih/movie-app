@@ -1,6 +1,8 @@
 import type {
   TMDBMovieListResponseDto,
-  TMDBMovieDetailResponseDto
+  TMDBMovieDetailResponseDto,
+  TMDBGenreListResponseDto,
+  DiscoverMoviesParams
 } from '../schemas/movieSchema';
 
 export interface MovieRemoteSource {
@@ -12,4 +14,9 @@ export interface MovieRemoteSource {
   searchMovies(query: string, page: number): Promise<TMDBMovieListResponseDto>;
   getMovieDetails(movieId: number): Promise<TMDBMovieDetailResponseDto>;
   getSimilarMovies(movieId: number): Promise<TMDBMovieListResponseDto>;
+  discoverMovies(
+    params: DiscoverMoviesParams,
+    page: number
+  ): Promise<TMDBMovieListResponseDto>;
+  getGenres(): Promise<TMDBGenreListResponseDto>;
 }

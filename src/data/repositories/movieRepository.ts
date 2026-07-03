@@ -1,4 +1,5 @@
-import type { Movie, MovieDetail, PaginatedMovies } from '@/domain/entities';
+import type { Movie, MovieDetail, PaginatedMovies, Genre } from '@/domain/entities';
+import type { DiscoverMoviesParams } from '../schemas/movieSchema';
 
 export interface MovieRepository {
   getTrending(page: number): Promise<PaginatedMovies>;
@@ -9,4 +10,6 @@ export interface MovieRepository {
   search(query: string, page: number): Promise<PaginatedMovies>;
   getDetails(movieId: number): Promise<MovieDetail>;
   getSimilar(movieId: number): Promise<Movie[]>;
+  discover(params: DiscoverMoviesParams, page: number): Promise<PaginatedMovies>;
+  getGenres(): Promise<Genre[]>;
 }

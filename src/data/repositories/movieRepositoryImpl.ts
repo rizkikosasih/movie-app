@@ -1,7 +1,8 @@
 import type { MovieRepository } from './movieRepository';
 import type { MovieRemoteSource } from '../datasources/movieRemoteSource';
 import { mapToMovie, mapToMovieDetail } from '../mappers/movieMapper';
-import type { Movie, MovieDetail, PaginatedMovies } from '@/domain/entities';
+import type { Movie, MovieDetail, PaginatedMovies, Genre } from '@/domain/entities';
+import type { DiscoverMoviesParams } from '../schemas/movieSchema';
 
 export class MovieRepositoryImpl implements MovieRepository {
   private remoteSource: MovieRemoteSource;
@@ -78,5 +79,23 @@ export class MovieRepositoryImpl implements MovieRepository {
   async getSimilar(movieId: number): Promise<Movie[]> {
     const dto = await this.remoteSource.getSimilarMovies(movieId);
     return dto.results.map(mapToMovie);
+  }
+
+  async discover(params: DiscoverMoviesParams, page: number): Promise<PaginatedMovies> {
+    const dto = await this.remoteSource.discoverMovies(params, page);
+    return {
+      page: dto.page,
+      movies: dto.results.map(mapToMovie),
+      totalPages: dto.total_pages,
+      totalResults: dto.total_results
+    };
+  }
+
+  async getGenres(): Promise<Genre[]> {
+    const dto = await this.remoteSource.getGenres();
+    return dto.genres.map((g) => ({
+      id: g.id,
+      name: g.name
+    }));
   }
 }

@@ -7,7 +7,7 @@ import {
   getUpcomingMoviesUseCase
 } from '@/core/di';
 
-export const useInfiniteCategoryMovies = (category: string) => {
+export const useInfiniteCategoryMovies = (category: string, enabled: boolean = true) => {
   const getUseCase = () => {
     switch (category) {
       case 'trending':
@@ -34,7 +34,8 @@ export const useInfiniteCategoryMovies = (category: string) => {
         return lastPage.page + 1;
       }
       return undefined;
-    }
+    },
+    enabled
   });
 };
 

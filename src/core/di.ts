@@ -8,6 +8,8 @@ import { GetUpcomingMoviesUseCase } from '@/domain/usecases/getUpcomingMoviesUse
 import { SearchMoviesUseCase } from '@/domain/usecases/searchMoviesUseCase';
 import { GetMovieDetailsUseCase } from '@/domain/usecases/getMovieDetailsUseCase';
 import { GetSimilarMoviesUseCase } from '@/domain/usecases/getSimilarMoviesUseCase';
+import { DiscoverMoviesUseCase } from '@/domain/usecases/discoverMoviesUseCase';
+import { GetGenresUseCase } from '@/domain/usecases/getGenresUseCase';
 
 const remoteSource = new MovieRemoteSourceImpl();
 export const movieRepository = new MovieRepositoryImpl(remoteSource);
@@ -20,3 +22,5 @@ export const getUpcomingMoviesUseCase = new GetUpcomingMoviesUseCase(movieReposi
 export const searchMoviesUseCase = new SearchMoviesUseCase(movieRepository);
 export const getMovieDetailsUseCase = new GetMovieDetailsUseCase(movieRepository);
 export const getSimilarMoviesUseCase = new GetSimilarMoviesUseCase(movieRepository);
+export const discoverMoviesUseCase = new DiscoverMoviesUseCase(movieRepository);
+export const getGenresUseCase = new GetGenresUseCase(movieRepository);
