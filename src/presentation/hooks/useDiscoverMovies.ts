@@ -21,4 +21,3 @@ export const useDiscoverMovies = (
 };
 
 export default useDiscoverMovies;
-
