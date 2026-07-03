@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/layout';
 import Banner from '../components/banner';
 import MovieRow from '../components/movieRow';
-import MovieDetailModal from '../components/movieDetailModal';
-import SearchOverlay from '../components/searchOverlay';
 import { useTrendingMovies } from '../hooks/useTrendingMovies';
 import { useNowPlayingMovies } from '../hooks/useNowPlayingMovies';
 import { usePopularMovies } from '../hooks/usePopularMovies';
@@ -12,8 +10,7 @@ import { useUpcomingMovies } from '../hooks/useUpcomingMovies';
 import { useMovieStore } from '@/domain/store/useMovieStore';
 
 const Home = () => {
-  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Fetch category data
   const { data: trendingData, isLoading: isTrendingLoading } = useTrendingMovies(1);
@@ -26,13 +23,7 @@ const Home = () => {
   const { watchlist } = useMovieStore();
 
   const handleSelectMovie = (movieId: number) => {
-    setSelectedMovieId(movieId);
-    setIsDetailsOpen(true);
-  };
-
-  const handleCloseDetails = () => {
-    setIsDetailsOpen(false);
-    setTimeout(() => setSelectedMovieId(null), 300);
+    navigate(`/movie/${movieId}`);
   };
 
   return (
@@ -93,17 +84,6 @@ const Home = () => {
           onSelectMovie={handleSelectMovie}
         />
       </div>
-
-      {/* Movie Details Modal Overlay */}
-      <MovieDetailModal
-        movieId={selectedMovieId}
-        isOpen={isDetailsOpen}
-        onClose={handleCloseDetails}
-        onSelectSimilar={handleSelectMovie}
-      />
-
-      {/* Search Overlay */}
-      <SearchOverlay onSelectMovie={handleSelectMovie} />
     </Layout>
   );
 };

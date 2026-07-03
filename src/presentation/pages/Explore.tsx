@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Layout from '../components/layout';
 import MovieCard from '../components/movieCard';
-import MovieDetailModal from '../components/movieDetailModal';
-import SearchOverlay from '../components/searchOverlay';
 import { useInfiniteCategoryMovies } from '../hooks/useInfiniteCategoryMovies';
 import { Spinner } from '../components/ui/spinner';
 
@@ -20,8 +18,7 @@ const categoryTitleMap: Record<string, string> = {
 
 export const Explore = () => {
   const { category = 'trending' } = useParams<{ category: string }>();
-  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Setup intersection observer
   const { ref, inView } = useInView({
@@ -40,13 +37,7 @@ export const Explore = () => {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleSelectMovie = (movieId: number) => {
-    setSelectedMovieId(movieId);
-    setIsDetailsOpen(true);
-  };
-
-  const handleCloseDetails = () => {
-    setIsDetailsOpen(false);
-    setTimeout(() => setSelectedMovieId(null), 300);
+    navigate(`/movie/${movieId}`);
   };
 
   // Extract all movies from paginated data
@@ -134,17 +125,6 @@ export const Explore = () => {
           </div>
         )}
       </div>
-
-      {/* Details Overlay */}
-      <MovieDetailModal
-        movieId={selectedMovieId}
-        isOpen={isDetailsOpen}
-        onClose={handleCloseDetails}
-        onSelectSimilar={handleSelectMovie}
-      />
-
-      {/* Global Search Overlay */}
-      <SearchOverlay onSelectMovie={handleSelectMovie} />
     </Layout>
   );
 };
