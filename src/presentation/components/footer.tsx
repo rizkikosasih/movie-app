@@ -16,7 +16,8 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="text-xs text-zinc-500 dark:text-zinc-400">
-          &copy; {new Date().getFullYear()} CineGallery. All rights reserved.
+          &copy; {new Date().getFullYear()} CineGallery. Developed by Rizki Kosasih. All
+          rights reserved.
         </div>
       </div>
     </footer>
