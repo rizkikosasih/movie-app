@@ -7,6 +7,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** `src/core/`, `tsconfig.json`, konfigurasi Vite/Tailwind.
 
 **Tugas:**
+
 - Inisialisasi struktur project dan path alias.
 - Implementasi `tmdbClient.ts`, `themeProvider.tsx`, `cn.ts`.
 - Menjaga konsistensi konfigurasi build antar environment.
@@ -18,6 +19,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** `src/data/`.
 
 **Tugas:**
+
 - Implementasi Zod schema (`schemas/`).
 - Implementasi datasource konkrit (`datasources/`).
 - Implementasi repository konkrit (`repositories/`).
@@ -30,6 +32,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** `src/domain/`.
 
 **Tugas:**
+
 - Implementasi usecase per fitur (`usecases/`).
 - Implementasi store Zustand (`store/`).
 - Definisi entity (`entities/`).
@@ -41,6 +44,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** `src/presentation/`.
 
 **Tugas:**
+
 - Implementasi komponen UI (kartu film, overlay pencarian, grid, toggle tema).
 - Implementasi custom hook yang mengonsumsi usecase melalui `@tanstack/react-query`.
 - Implementasi halaman (Beranda, Eksplorasi, Pencarian, Detail).
@@ -53,6 +57,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** konfigurasi Tailwind theme, token warna, tipografi.
 
 **Tugas:**
+
 - Menerapkan palet warna "Cinematic Midnight & Electric Amber" (PRD Section 6.1).
 - Menerapkan aturan pemakaian warna aksen pada elemen interaktif.
 - Menetapkan skala tipografi serif/sans-serif.
@@ -65,6 +70,7 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 **Lingkup:** lintas layer, read-only terhadap kode.
 
 **Tugas:**
+
 - Verifikasi alur data sesuai diagram PRD Section 4 (Data Flow Diagram pada blueprint Section 10).
 - Verifikasi tidak ada pelanggaran batas antar layer (contoh: presentation memanggil datasource langsung).
 - Verifikasi validasi Zod dijalankan pada setiap respons API sebelum masuk ke domain layer.
@@ -78,3 +84,4 @@ Pembagian peran mengikuti batas lapisan Clean Architecture pada blueprint. Setia
 2. Agent tidak boleh melompati step tanpa hasil step sebelumnya disetujui.
 3. Perubahan kontrak interface (`MovieRepository`, `MovieRemoteSource`) memerlukan koordinasi antara Data Layer Agent dan Domain Layer Agent sebelum implementasi berjalan.
 4. QA/Verification Agent dijalankan setelah setiap step pada `INSTRUCTION.md` selesai, bukan hanya di akhir project.
+5. Sebelum melakukan git commit, Agen wajib menjalankan formatter Prettier pada berkas yang diubah untuk menjamin konsistensi format kode.
